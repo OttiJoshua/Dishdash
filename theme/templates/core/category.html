@@ -1,0 +1,106 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+
+<div class="bg-white min-h-min overflow-hidden">
+       <!-- Header and Category -->
+    <div class="flex justify-start gap-5 list-none ml-0  md:ml-7 w-full font-nova py-7 px-5">
+        <li class="self-center hover:font-bold"><a href="{% url 'index' %}">Home</a></li>
+        <li class="self-center hover:font-bold"><a href="{% url 'categories' %}">Categories</a></li>
+    </div> 
+    
+    <!-- Main Header -->
+    <div class="grid grid-cols-2 mb-7 p-6">
+        <div class="grid items-center">
+           <div class="px-3 md:px-8">
+                <h3 class="font-fjord self-end my-3 text-[14px] font-semibold text-orange-500">Welcome Welcome !!!</h3>
+                <h3 class="font-nova sm:text-lg md:text-3xl self-center my-3 font-bold">Local Cusine</h3>
+                <p class=" hidden md:flex font-fjord self-start my-3">Welcome to our Local Cuisine category! Experience authentic flavors from your community, featuring traditional dishes and beloved street food. Whether you're revisiting a classic or trying something new, our local cuisine selection brings the taste of home right to your table. Enjoy the best your region offers today!</p>
+                <p class="flex md:hidden font-fjord self-start">Welcome to our Local Cuisine category! Discover authentic dishes and beloved street food that bring the taste of home.</p>
+           </div>
+        </div>
+        <div class="grid justify-items-center">
+            <img class="rounded-full shadow-2xl w-[100px] h-[100px] md:w-[300px] md:h-[300px] lg:w-[500px] lg:h-[500px]" src="{% static 'img/chow.jpeg' %}" alt="">
+            <img class="flex md:hidden rounded-full shadow-2xl w-[100px] h-[100px] md:w-[300px] md:h-[300px] lg:w-[500px] lg:h-[500px]" src="{% static 'img/chowu.jpg' %}" alt="">
+        </div>
+    </div>
+
+
+        <!-- Our Dishes -->
+    <div class="flex justify-center text-center bg-gray-300 pt-14">
+        <h3 class="font-nova font-semibold text-[30px] md:text-[40px]">Our Dishes</h3>    
+    </div>
+
+            <!-- Dishes Card -->
+    <div class="bg-gray-300 grid gap-y-16 gap-x-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-7">
+        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
+            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
+            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
+            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
+            <div class="text-center mb-5">
+                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="#">Add to Cart</a>
+            </div>
+        </div>
+        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
+            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
+            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
+            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
+            <div class="text-center mb-5">
+                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="#">Add to Cart</a>
+            </div>
+        </div>
+        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
+            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
+            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
+            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
+            <div class="text-center mb-5">
+                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="#">Add to Cart</a>
+            </div>
+        </div>
+        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
+            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
+            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
+            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
+            <div class="text-center mb-5">
+                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="#">Add to Cart</a>
+            </div>
+        </div>
+        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
+            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
+            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
+            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
+            <div class="text-center mb-5">
+                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="#">Add to Cart</a>
+            </div>
+        </div>
+        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
+            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
+            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
+            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
+            <div class="text-center mb-5">
+                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="#">Add to Cart</a>
+            </div>
+        </div>
+        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
+            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
+            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
+            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
+            <div class="text-center mb-5">
+                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="#">Add to Cart</a>
+            </div>
+        </div>
+        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
+            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
+            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
+            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
+            <div class="text-center mb-5">
+                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="#">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock content %}

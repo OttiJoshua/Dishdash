@@ -1,0 +1,166 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+
+<div class="bg-white min-h-min overflow-hidden">
+           <!-- Header and Category -->
+    <div class="flex justify-start gap-5 list-none ml-0  md:ml-7 w-full font-nova py-7 px-5">
+        <li class="self-center hover:font-bold"><a href="{% url 'index' %}">Home</a></li>
+        <li class="self-center hover:font-bold"><a href="#">Categories</a></li>
+    </div>
+
+        <!-- Categories -->
+    <div class="font-nova flex gap-2 md:gap-5 justify-center items-center mt-10 mb-5">
+        <div class="w-20 h-20"><img src="{% static 'img/Dish_Dash-removebg-preview.png' %}" alt=""></div>
+        <h3 class="font-semibold text-[30px] md:text-[40px]">CATEGORIES</h3>
+        <div class="w-20 h-20"><img src="{% static 'img/Dish_Dash-removebg-preview.png' %}" alt=""></div>
+    </div>
+
+        <!-- Categories Card -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 px-5">
+        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
+            <div class="relative w-full h-[300px]">
+                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/local.jpg' %}" alt="">
+            </div>
+            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
+                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Local Cusine</a>
+            </div>
+        </div>
+        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
+            <div class="relative w-full h-[300px]">
+                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/beverages.jpg' %}" alt="">
+            </div>
+            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
+                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Beverages</a>
+            </div>
+        </div>
+        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
+            <div class="relative w-full h-[300px]">
+                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/smallchops.jpg' %}" alt="">
+            </div>
+            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
+                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Snacks & SmallChops</a>
+            </div>
+        </div>
+        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
+            <div class="relative w-full h-[300px]">
+                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/grill.jpg' %}" alt="">
+            </div>
+            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
+                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Grilled & Roasted</a>
+            </div>
+        </div>
+        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
+            <div class="relative w-full h-[300px]">
+                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/bakery.jpg' %}" alt="">
+            </div>
+            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
+                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Bakery & Pastry</a>
+            </div>
+        </div>
+        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
+            <div class="relative w-full h-[300px]">
+                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/fastfood.jpg' %}" alt="">
+            </div>
+            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
+                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Fast Food</a>
+            </div>
+        </div>
+        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
+            <div class="relative w-full h-[300px]">
+                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/fitness.jpg' %}" alt="">
+            </div>
+            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
+                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Artisan Food</a>
+            </div>
+        </div>
+        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
+            <div class="relative w-full h-[300px]">
+                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/continental.jpg' %}" alt="">
+            </div>
+            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
+                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Global Dishes</a>
+            </div>
+        </div>
+        
+    </div>
+
+
+            <!-- Custome Reviews -->
+    <div class="flex justify-center text-center mt-24 mb-5  px-5">
+        <h3 class="font-nova font-semibold text-[30px] md:text-[40px]">
+            Why Choose Us
+        </h3>    
+    </div>
+
+            <!-- Reviews Cards-->
+    <div class="grid grid-cols-1 md:grid-cols-2 px-5 my-7 gap-4 bg-gray-200">
+        <div>
+            <img src="{% static 'img/chowmain.jpeg' %}" alt="">
+        </div>
+        <div class="grid gap-5 md:gap-0 py-5">
+            <h3 class="font-nova text-4xl self-end">Best Food Service In The Country</h3>
+            <p class="font-fjord self-center text-lg">At <span class="font-dancing text-orange-600 font-bold">DishDash</span>, we pride ourselves on serving the best food in the country. Our dishes are crafted with the finest ingredients, ensuring every bite is a burst of flavor. We are dedicated to providing our customers with the utmost tasty food, making every meal an unforgettable experience. </p>
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3">
+                <div>
+                    <div class=" flex gap-3 md:gap-6 p-3 border-2 rounded-lg border-gray-300 text-center justify-center">
+                        <i class="fas fa-shipping-fast fa-lg self-center" style="color: #ffa500;"></i>
+                        <h3>Free Delivery</h3>
+                    </div>                
+                </div>
+                <div>
+                    <div class=" flex gap-3 md:gap-6 p-3 border-2 rounded-lg border-gray-300 text-center justify-center">
+                        <i class="fas fa-money-check-alt fa-lg self-center" style="color: #ffa500;"></i>
+                        <h3>Easy Payment</h3>
+                    </div>
+                </div>
+                <div class="col-span-2 lg:col-span-1">
+                    <div class=" flex gap-6 p-3 border-2 rounded-lg border-gray-300 text-center justify-center">
+                        <i class="fab fa-servicestack fa-lg self-center" style="color: #ffa500;"></i>
+                        <h3>24/7 Service</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+         <!-- Extra -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <div class="grid gap-5 justify-items-center text-center p-5">
+            <div class="grid bg-gray-700 rounded-full w-10 h-10">
+                <i class="fas fa-thumbs-up fa-lg self-center" style="color: #ffa500;"></i>
+            </div>
+            <h3 class="font-nova text-2xl font-semibold">Convenience</h3>
+            <p class="font-fjord self-start p-3">Order from the comfort of your home or office, without needing to step out.</p>
+        </div>
+        <div class="grid gap-5 justify-items-center text-center p-5">
+            <div class="grid bg-gray-700 rounded-full w-10 h-10">
+                <i class="fas fa-clock fa-lg self-center" style="color: #ffa500;"></i>
+            </div>
+            <h3 class="font-nova text-2xl font-semibold">Time Saving</h3>
+            <p class="font-fjord self-start p-3">Skip the waiting lines at restaurants, and have your food delivered to your doorstep.</p>
+        </div>
+        <div class="grid gap-5 justify-items-center items-center text-center p-5">
+            <div class="grid bg-gray-700 rounded-full w-10 h-10">
+                <i class="fas fa-edit fa-lg self-center" style="color: #ffa500;"></i>
+            </div>
+            <h3 class="font-nova text-2xl font-semibold">Customization</h3>
+            <p class="font-fjord self-start p-3"> Tailor your order to your specific preferences with easy-to-use customization options.</p>
+        </div>
+        <div class="grid gap-5 justify-items-center items-center text-center p-5">
+            <div class="grid bg-gray-700 rounded-full w-10 h-10">
+                <i class="fas fa-tags fa-lg self-center" style="color: #ffa500;"></i>
+            </div>
+            <h3 class="font-nova text-2xl font-semibold">Exclusive Deals</h3>
+            <p class="font-fjord self-start p-3"> Unlock exclusive deals and discounts when ordering food online today!</p>
+        </div>
+
+    </div>
+
+
+    
+
+</div>
+
+{% endblock content %}
