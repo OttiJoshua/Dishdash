@@ -28,6 +28,7 @@ const indexSwiper = new Swiper('.index-swiper', {
       },
       pagination: {
         el: ".swiper-pagination",
+        clickable: true,
       },
       navigation: {
         nextEl: '.swiper-button-next',
@@ -48,7 +49,15 @@ const indexSwiper = new Swiper('.index-swiper', {
         },
       },
     });
-
+    var swiper = new Swiper(".foodSwiper", {
+      loop: true,
+      grabCursor: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+     
+    });
   
     const nextButton = document.querySelector('.swiper-button-next');
     const prevButton = document.querySelector('.swiper-button-prev');
@@ -84,29 +93,12 @@ const indexSwiper = new Swiper('.index-swiper', {
       bullet.style.borderRadius = '50%';
     });
 
-    indexSwiper.on('slideChange', function () {
+    swiper.on('slideChange', function () {
       paginationBullets.forEach(bullet => {
         bullet.style.backgroundColor = 'gray';
         bullet.style.width = '8px';
       });
       
-      
-
-      const activeBullet = document.querySelector('.swiper-pagination-bullet-active');
-      if (activeBullet) {
-        activeBullet.style.backgroundColor = 'orange';
-        activeBullet.style.width = '16px';
-      }
-    });
-
-     indexSwiper.on('slideChange', function () {
-      paginationBullets.forEach(bullet => {
-        bullet.style.backgroundColor = 'gray';
-        bullet.style.width = '8px';
-      });
-      
-      
-
       const activeBullet = document.querySelector('.swiper-pagination-bullet-active');
       if (activeBullet) {
         activeBullet.style.backgroundColor = 'orange';
@@ -115,11 +107,6 @@ const indexSwiper = new Swiper('.index-swiper', {
     });
 
 
-    const activeBullet = document.querySelector('.swiper-pagination-bullet-active');
-    if (activeBullet) {
-      activeBullet.style.backgroundColor = 'orange';
-      activeBullet.style.width = '16px';
-    }
 
     function updateNavigationButtonsVisibility() {
       const prevButton = document.querySelector('.swiper-button-prev');
@@ -137,9 +124,57 @@ const indexSwiper = new Swiper('.index-swiper', {
       }
     }
 
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabs = document.querySelectorAll('.tab-link');
+      const contents = document.querySelectorAll('.tab-content');
+  
+      tabs.forEach(tab => {
+          tab.addEventListener('click', function (e) {
+              e.preventDefault();
+  
+              // Remove 'active' class from all tabs and hide all content
+              tabs.forEach(t => t.classList.remove('bg-orange-500', 'text-white'));
+              contents.forEach(content => content.classList.add('hidden'));
+  
+              // Add 'active' class to clicked tab and show the corresponding content
+              tab.classList.add('bg-orange-500', 'text-white');
+              document.getElementById(tab.dataset.target).classList.remove('hidden');
+          });
+      });
+  
+      // Show the first tab by default
+      tabs[0].click();
+  });
 
 
-    
+
+  document.getElementById("heartIcon").addEventListener("click", function() {
+    this.classList.toggle("text-orange-600");
+  });
+  
+
+
+
+// Cart Counter
+const decreaseBtn = document.getElementById('decrease');
+const increaseBtn = document.getElementById('increase');
+const counter = document.getElementById('counter');
+
+let count = 1;
+
+decreaseBtn.addEventListener('click', () => {
+  if (count > 1) {
+    count--;
+    counter.textContent = count;
+  }
+});
+
+increaseBtn.addEventListener('click', () => {
+  count++;
+  counter.textContent = count;
+});
+
+
 
     window.onload = updateNavigationButtonsVisibility;
     window.addEventListener('resize', updateNavigationButtonsVisibility);

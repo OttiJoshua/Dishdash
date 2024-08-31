@@ -1,0 +1,86 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+
+<div class="overflow-hidden bg-gray-300 min-h-min">
+    <div class="flex justify-start gap-5 list-none ml-0  md:ml-7 w-full font-nova py-7 px-5">
+        <li class="self-center hover:font-bold"><a href="{% url 'index' %}">Home</a></li>
+        <li class="self-center hover:font-bold"><a href="{% url 'categories' %}">Categories</a></li>
+    </div> 
+    <div class="max-w-7xl mx-auto p-6">
+        <div class="grid md:flex">
+          <!-- Sidebar Navigation -->
+            <div class="w-full md:w-1/4 p-4 rounded-md shadow-sm">
+                <ul class="flex md:grid gap-3 justify-center items-center font-nova">
+                    <li>
+                        <a href="#" class="tab-link block p-3 rounded-md font-semibold hover:bg-orange-500 hover:text-white transition" data-target="details">
+                            My Details
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tab-link block p-3 rounded-md font-semibold hover:bg-orange-500 hover:text-white transition" data-target="orders">
+                        My Orders
+                        </a>
+                    </li>
+                  
+                </ul>
+            </div>
+      
+          <!-- Content Area -->
+            <div class="sm:w-full justify-self-center md:w-3/4 ml-6 p-5 bg-white">
+            <!-- My Details Section -->
+                <div id="details" class="tab-content block font-fjord">
+                    <h2 class="text-2xl font-semibold mb-6 my-7">My Details</h2>
+                    <div class="space-y-4">
+                    <div class="flex space-x-4">
+                    <div class="w-1/2">
+                        <label class="block text-sm font-medium text-gray-700">First Name</label>
+                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-sm font-medium text-gray-700">Second Name</label>
+                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                    </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <div class="w-1/2">
+                            <label class="block text-sm font-medium text-gray-700">Birth Date</label>
+                            <input type="date" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                        </div>
+                    </div>
+                    <div class="w-4/4">
+                        <label class="block text-sm font-medium text-gray-700">Address </label>
+                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-sm font-medium text-gray-700">Email </label>
+                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-sm font-medium text-gray-700">Phone Number</label>
+                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <button class="px-4 py-2 bg-orange-500 text-white rounded-md shadow-sm hover:bg-orange-600">Save</button>
+                    </div>
+                </div>
+            </div>
+      
+           
+      
+            <!-- My Orders Section -->
+            <div id="orders" class="tab-content hidden font-fjord">
+                <h2 class="text-2xl font-semibold mb-6">My Orders</h2>
+                <!-- Add content here make a section for leaving ratings and review -->
+            </div>
+      
+           
+            </div>
+        </div>
+    </div>
+      
+
+
+</div>
+
+{% endblock content %}

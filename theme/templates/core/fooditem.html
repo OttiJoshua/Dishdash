@@ -1,0 +1,129 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+
+<div class="overflow-hidden bg-white min-h-min">
+    <div class="flex justify-start gap-5 list-none ml-0  md:ml-7 w-full font-nova py-7 px-5">
+        <li class="self-center hover:font-bold"><a href="{% url 'index' %}">Home</a></li>
+        <li class="self-center hover:font-bold"><a href="{% url 'categories' %}">Categories</a></li>
+        <li class="self-center hover:font-bold"><a href="{% url 'category' %}">Category</a></li>
+    </div> 
+
+    <div class="grid grid-cols-1 md:grid-cols-2 my-5 px-4">
+        <div class=" grid justify-items-center items-center h-[500px]">
+            <img class="w-[400px] h-[400px]" src="{% static 'img/riceagain.png' %}" alt="">
+        </div>
+        <div class="bg-gray-600 gap-8 lg:gap-0 text-white grid p-7 rounded-xl shadow-2xl shadow-black">
+            <div class="grid grid-cols-2 mb-3 items-center">
+              <h3 class="font-nova text-2xl">Jellof Rice & Chicken</h3>
+              <i id="heartIcon" class="fas fa-heart fa-lg justify-self-end cursor-pointer text-orange-400"></i>            
+            </div>
+            <p class="font-fjord font-medium">Delicious Jollof rice and chicken, bursting with rich, authentic flavors!!</p>
+            <p class="font-fjord">Welcome to a taste adventure with our Jollof rice and chicken, where each bite brings a harmony of vibrant spices, tender chicken, and perfectly cooked rice. Indulge in a dish that embodies rich tradition and unforgettable flavor, guaranteed to satisfy.</p>
+            <h3 class="font-fjord font-semibold">Price <span class="px-3 text-orange-500">&#8358; 3500</span></h3>
+            <hr class="orange justify-self-start border-2 w-3/4 border-orange-300">
+            <form>
+                <h3 class="mx-3 font-fjord font-meduim text-xl">Build Your Perfect Meal</h3><br>
+                <label class="mx-3 font-fjord">
+                  <input type="checkbox" name="option1" value="option1" class="text-orange-500">
+                  Onions
+                </label>
+              
+                <label class="mx-3 font-fjord">
+                  <input type="checkbox" name="option2" value="option2" class="text-orange-500">
+                  Peas 
+                </label>
+              
+                <label class="mx-3 font-fjord">
+                  <input type="checkbox" name="option3" value="option3" class="text-orange-500">
+                  Salad 
+                </label>
+              
+                <label class="mx-3 font-fjord">
+                  <input type="checkbox" name="option4" value="option4" class="text-orange-500">
+                  Carrots
+                </label>
+              
+                <div class="flex gap-4 justify-center text-center items-center my-8">
+                    <a class="p-2 bg-orange-500 hover:bg-orange-700 rounded-2xl w-32 text-white font-fjord shadow-2xl" href="{% url 'cart' %}">Add To Cart</a>
+                    <a class="font-fjord hover:text-orange-500 hover:font-semibold" href="{% url 'cart' %}">View Cart....</a>
+                </div>
+              </form>
+        </div>
+    </div>
+
+
+    
+
+        <!-- Reviews Slider -->
+    <div class="p-6 mt-32 mb-10 mx-0 md:mx-7 bg-gray-500 rounded-lg text-white">
+      <div class="font-nova flex justify-center items-center mb-20">
+        <h3 class="font-semibold text-[30px] md:text-[40px]">Customers Reviews</h3>
+      </div>
+      <div class="swiper foodSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide flex flex-col items-center text-center">
+            <div class="mb-8 grid justify-items-center">
+              <img class="w-48 h-10" src="{% static 'img/5star.png' %}" alt="">
+            </div>
+            <div class="grid grid-cols-[1fr_6fr_1fr] md:grid-cols-[1fr_4fr_1fr] p-6">
+              <i class="fas fa-quote-left fa-lg justify-self-end" style="color: #ffa500;"></i>
+              <h3 class="text-[16px] md:text-xl font-fjord">
+                Absolutely delightful! The Jollof rice was bursting with rich, savory flavors and perfectly cooked. Each bite was a harmonious blend of spices, tomatoes, and tender rice. The dish was vibrant, both in taste and color, making it an unforgettable experience. I would definitely recommend it to anyone seeking a delicious, authentic meal.          
+              </h3>
+              <i class="fas fa-quote-right fa-lg self-end justify-self-start" style="color: #ffa500;"></i>
+            </div>
+            <p class="mt-4 mb-10 font-fjord">John Doe</p>
+          </div>
+
+          <div class="swiper-slide flex flex-col items-center text-center">
+            <div class="mb-8 grid justify-items-center">
+              <img class="w-48 h-10" src="{% static 'img/4star.png' %}" alt="">
+            </div>
+            <div class="grid grid-cols-[1fr_6fr_1fr] md:grid-cols-[1fr_4fr_1fr] p-6">
+              <i class="fas fa-quote-left fa-lg justify-self-end" style="color: #ffa500;"></i>
+              <h3 class="text-[16px] md:text-xl font-fjord">
+                Delicious and full of flavor! The Jollof rice was everything I hoped for—rich, aromatic, and beautifully spiced. The grains were perfectly cooked, with each bite offering a burst of tangy tomato and warm spices. It was hearty and satisfying, making it an unforgettable dish. I can't wait to have more!          
+              </h3>
+              <i class="fas fa-quote-right fa-lg self-end justify-self-start" style="color: #ffa500;"></i>
+            </div>
+            <p class="mt-4 mb-10 font-fjord">Jane Doe</p>
+          </div>
+
+          <div class="swiper-slide flex flex-col items-center text-center">
+            <div class="mb-8 grid justify-items-center">
+              <img class="w-48 h-10" src="{% static 'img/5star.png' %}" alt="">
+            </div>
+            <div class="grid grid-cols-[1fr_6fr_1fr] md:grid-cols-[1fr_4fr_1fr] p-6">
+              <i class="fas fa-quote-left fa-lg justify-self-end" style="color: #ffa500;"></i>
+              <h3 class="text-[16px] md:text-xl font-fjord">
+                The Jollof rice was an absolute delight! The seasoning was spot on, creating a wonderful harmony of flavors that danced on the palate. The rice was fluffy and perfectly cooked, with a lovely hint of smokiness. It was a comforting and deeply satisfying meal. A must-try for any rice lover.          
+              </h3>
+              <i class="fas fa-quote-right fa-lg self-end justify-self-start" style="color: #ffa500;"></i>
+            </div>
+            <p class="mt-4 mb-10 font-fjord">Eric Doe</p>
+          </div>
+
+          <div class="swiper-slide flex flex-col items-center text-center">
+            <div class="mb-8 grid justify-items-center">
+              <img class="w-48 h-10" src="{% static 'img/4star.png' %}" alt="">
+            </div>
+            <div class="grid grid-cols-[1fr_6fr_1fr] md:grid-cols-[1fr_4fr_1fr] p-6">
+              <i class="fas fa-quote-left fa-lg justify-self-end" style="color: #ffa500;"></i>
+              <h3 class="text-[16px] md:text-xl font-fjord">
+                Amazing! The Jollof rice had a perfect balance of spices, giving it a deliciously savory and slightly spicy kick. The rice was fluffy, and the tomato base was rich and flavorful. Each bite was a treat, making it a truly authentic experience. I will definitely order it again.          
+              </h3>
+              <i class="fas fa-quote-right fa-lg self-end justify-self-start" style="color: #ffa500;"></i>
+            </div>
+            <p class="mt-4 mb-10 font-fjord">Ann Doe</p>
+          </div>
+        </div> 
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+      
+      </div>
+    </div>
+        
+</div>
+
+{% endblock content %}

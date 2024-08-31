@@ -17,3 +17,12 @@ def login(request):
 
 def signup(request):
     return render(request, 'core/signup.html')
+
+def user(request):
+    return render(request, 'core/user.html')
+
+def fooditem(request):
+    return render(request, 'core/fooditem.html')
+
+def cart(request):
+    return render(request, 'core/cart.html')
