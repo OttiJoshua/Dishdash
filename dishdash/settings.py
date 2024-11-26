@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
+    'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,9 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
+    'cart.apps.CartConfig',
     'tailwind',
     'theme',
     'django_browser_reload',
+    'django.contrib.humanize',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -51,6 +55,8 @@ INTERNAL_IPS = [
 ]
 
 NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
+
+AUTH_USER_MODEL = 'core.Customer'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -147,3 +153,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media Folder Settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
+
+

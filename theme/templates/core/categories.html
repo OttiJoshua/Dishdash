@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% load static %}
+{% block title%} | Categories{% endblock %}
 {% block content %}
 
 <div class="bg-white min-h-min overflow-hidden">
@@ -18,70 +19,23 @@
 
         <!-- Categories Card -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 px-5">
-        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
-            <div class="relative w-full h-[300px]">
-                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/local.jpg' %}" alt="">
+        {% if categories %}
+            {% for category in categories %}
+                <div class="shadow-lg rounded-b-2xl mb-5 grid ">
+                    <div class="relative w-full h-[300px]">
+                        <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{{ category.image1.url }}" alt="">
+                    </div>
+                    <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
+                        <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' category.id %}">{{ category.name }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div>
+                <p class="font-fjord">No Listing Avaliable</p>
             </div>
-            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
-                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Local Cusine</a>
-            </div>
-        </div>
-        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
-            <div class="relative w-full h-[300px]">
-                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/beverages.jpg' %}" alt="">
-            </div>
-            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
-                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Beverages</a>
-            </div>
-        </div>
-        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
-            <div class="relative w-full h-[300px]">
-                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/smallchops.jpg' %}" alt="">
-            </div>
-            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
-                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Snacks & SmallChops</a>
-            </div>
-        </div>
-        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
-            <div class="relative w-full h-[300px]">
-                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/grill.jpg' %}" alt="">
-            </div>
-            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
-                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Grilled & Roasted</a>
-            </div>
-        </div>
-        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
-            <div class="relative w-full h-[300px]">
-                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/bakery.jpg' %}" alt="">
-            </div>
-            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
-                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Bakery & Pastry</a>
-            </div>
-        </div>
-        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
-            <div class="relative w-full h-[300px]">
-                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/fastfood.jpg' %}" alt="">
-            </div>
-            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
-                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Fast Food</a>
-            </div>
-        </div>
-        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
-            <div class="relative w-full h-[300px]">
-                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/fitness.jpg' %}" alt="">
-            </div>
-            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
-                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Artisan Food</a>
-            </div>
-        </div>
-        <div class="shadow-lg rounded-b-2xl mb-5 grid ">
-            <div class="relative w-full h-[300px]">
-                <img class="rounded-2xl w-full h-full object-cover blur-[0.5px]" src="{% static 'img/continental.jpg' %}" alt="">
-            </div>
-            <div class="flex absolute z-20 justify-start self-end px-3 pb-7">
-                <a class="font-fjord bg-orange-400 rounded-lg p-2 shadow-lg backdrop-blur-lg text-white text-2xl hover:text-orange-800" href="{% url 'category' %}">Global Dishes</a>
-            </div>
-        </div>
+        {% endif %}
+        
         
     </div>
 

@@ -1,5 +1,7 @@
 {% extends 'base.html' %} 
 {% load static %}
+{% load humanize %}
+{% block title%} | User DashBoard {% endblock %}
 {% block content %}
 
 <div class="overflow-hidden bg-gray-300 min-h-min">
@@ -7,80 +9,209 @@
         <li class="self-center hover:font-bold"><a href="{% url 'index' %}">Home</a></li>
         <li class="self-center hover:font-bold"><a href="{% url 'categories' %}">Categories</a></li>
     </div> 
-    <div class="max-w-7xl mx-auto p-6">
-        <div class="grid md:flex">
-          <!-- Sidebar Navigation -->
-            <div class="w-full md:w-1/4 p-4 rounded-md shadow-sm">
-                <ul class="flex md:grid gap-3 justify-center items-center font-nova">
-                    <li>
-                        <a href="#" class="tab-link block p-3 rounded-md font-semibold hover:bg-orange-500 hover:text-white transition" data-target="details">
-                            My Details
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="tab-link block p-3 rounded-md font-semibold hover:bg-orange-500 hover:text-white transition" data-target="orders">
-                        My Orders
-                        </a>
-                    </li>
-                  
-                </ul>
-            </div>
-      
-          <!-- Content Area -->
-            <div class="sm:w-full justify-self-center md:w-3/4 ml-6 p-5 bg-white">
-            <!-- My Details Section -->
-                <div id="details" class="tab-content block font-fjord">
-                    <h2 class="text-2xl font-semibold mb-6 my-7">My Details</h2>
-                    <div class="space-y-4">
-                    <div class="flex space-x-4">
-                    <div class="w-1/2">
-                        <label class="block text-sm font-medium text-gray-700">First Name</label>
-                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
-                    </div>
-                    <div class="w-1/2">
-                        <label class="block text-sm font-medium text-gray-700">Second Name</label>
-                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
-                    </div>
-                    </div>
-                    <div class="flex space-x-4">
-                        <div class="w-1/2">
-                            <label class="block text-sm font-medium text-gray-700">Birth Date</label>
-                            <input type="date" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+
+
+        <!-- User Details -->
+    <div class="flex justify-center my-20 w-full">
+        <div class="p-5 bg-white w-[95%] shadow-2xl">
+            <h3 class="font-nova text-2xl font-semibold mb-10">
+                My Details
+            </h3>
+            {% if userinfo %}
+                <form class="w-full font-fjord" method="post" action="{% url 'user' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="update_info">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="flex flex-col">
+                            <label for="firstname" class="mb-2 text-black">First Name</label>
+                            <input type="text" name="firstname" value="{{ userinfo.firstname }}"  class="p-2 border border-black rounded focus:outline-none focus:border-orange-500">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="lastname" class="mb-2 text-black">Last Name</label>
+                            <input type="text" name="lastname" value="{{ userinfo.lastname }}"  class="p-2 border border-black rounded focus:outline-none focus:border-orange-500">
                         </div>
                     </div>
-                    <div class="w-4/4">
-                        <label class="block text-sm font-medium text-gray-700">Address </label>
-                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="flex flex-col">
+                            <label for="email" class="mb-2 text-black">Email</label>
+                            <input type="email" name="email" value="{{ userinfo.email }}"  class="p-2 border border-black rounded focus:outline-none focus:border-orange-500">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="phone_number" class="mb-2 text-black">Phone Number</label>
+                            <input type="tel" name="phone_number" value="{{ userinfo.phone_number }}"  class="p-2 border border-black rounded focus:outline-none focus:border-orange-500">
+                        </div>
                     </div>
-                    <div class="w-1/2">
-                        <label class="block text-sm font-medium text-gray-700">Email </label>
-                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                    
+                    <div class="flex flex-col mb-4">
+                        <label for="address" class="mb-2 text-black">Address</label>
+                        <input type="text" name="address" value="{{ userinfo.address }}"  class="p-2 border border-black rounded focus:outline-none focus:border-orange-500">
                     </div>
-                    <div class="w-1/2">
-                        <label class="block text-sm font-medium text-gray-700">Phone Number</label>
-                        <input type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+            
+                    <div class="flex flex-col mb-4 w-2/4 md:w-1/4">
+                        <label for="date_of_birth" class="mb-2 text-black">Birth Date</label>
+                        <input type="date" name="date_of_birth" value="{{ userinfo.date_of_birth | date:'Y-m-d' }}"  class="p-2 border border-black rounded focus:outline-none focus:border-orange-500">
                     </div>
+            
+                    <h2 class="text-2xl font-semibold mb-6 my-7">Change Password</h2>
+            
+                    <div class="flex flex-col mb-4 w-2/4 md:w-1/4">
+                        <label class="mb-2 text-black">New Password</label>
+                        <input type="password" name="password1"  class="p-2 border border-black rounded focus:outline-none focus:border-orange-500">
+                    </div>
+            
+                    <div class="flex flex-col mb-4 w-2/4 md:w-1/4">
+                        <label class="mb-2 text-black">Verify Password</label>
+                        <input type="password" name="password2"  class="p-2 border border-black rounded focus:outline-none focus:border-orange-500">
+                    </div>
+            
+                    
                     <div>
-                        <button class="px-4 py-2 bg-orange-500 text-white rounded-md shadow-sm hover:bg-orange-600">Save</button>
+                        <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded-md shadow-sm hover:bg-orange-600">Save</button>
                     </div>
+                </form>
+            {% endif %}
+        </div>   
+    </div>
+    
+
+        <!-- User Orders -->
+        <div class="flex justify-center my-10 w-full">
+            <div class="p-5 bg-white w-[95%] shadow-2xl grid">
+                <div>
+                    <h3 class="font-nova text-2xl font-semibold mb-10">My Orders</h3>
+                    
+                    <div class="hidden md:grid md:grid-cols-4 gap-6">
+                        <h3>Number</h3>
+                        <h3>Price</h3>
+                        <h3>Status</h3>
+                        <h3>View</h3>
+                    </div>
+                    <hr class="hidden md:grid border-gray-500 font-bold w-full">
+        
+                    <div>
+                        {% if orderdata %}
+                            {% for data in orderdata %}
+                                <div class="hidden md:grid md:grid-cols-4 gap-6 mt-10">
+                                    <h3>{{ data.order.tracking_number }}</h3>
+                                    <h3>&#8358; {{ data.order.order_total | intcomma }}</h3>
+                                    <h3>{{ data.order.order_status }}</h3>
+                                    <!-- Button to toggle visibility -->
+                                    <a 
+                                        class="hover:font-semibold hover:text-orange-600 cursor-pointer"
+                                        onclick="toggleOrderDetails('order-{{ data.order.id }}')">
+                                        View Order
+                                    </a>
+                                </div>
+        
+                                <div id="order-{{ data.order.id }}" class="mt-4 hidden">
+                                    <div class="grid grid-cols-[2fr_1fr_1fr_3fr] text-center justify-items-center mt-10">
+                                        <h3>Orders</h3>
+                                        <h3>Quantity</h3>
+                                        <h3>Price</h3>
+                                        <h3>Leave A Review</h3>
+                                    </div>
+                                    <hr class="border-gray-500 font-bold w-full">
+                                    
+                                    <!-- Loop through order items -->
+                                    {% if data.orderitems %}
+                                        {% for orderitem in data.orderitems %}
+                                            <div class="grid grid-cols-[2fr_1fr_1fr_3fr] py-4 text-center justify-items-center">
+                                                <div class="grid grid-cols-2 gap-3 w-full">
+                                                    <img class="w-36 h-36" src="{{ orderitem.fooditem.image.url }}" alt="">
+                                                    <h3 class="self-center font-fjord">{{ orderitem.fooditem.name }}</h3>
+                                                </div>
+                                                <h3 class="self-center font-fjord">{{ orderitem.quantity }}</h3>
+                                                <h3 class="self-center font-fjord">&#8358; {{ orderitem.fooditem.price |intcomma }}</h3>
+                                                {% if orderitem.review_exists %}
+                                                    <p class="self-center font-fjord font-normal">You've already left a review</p>
+                                                {% else %}
+                                                    <form class="self-center font-fjord grid w-full" method="post" action="{% url 'addreview' orderitem.fooditem.id %}">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="form_type" value="post_review">
+                                                        <input type="hidden" name="fooditem_id" value="{{ orderitem.fooditem.id }}">
+                                                        <div class="mb-4">
+                                                            <label for="rating">Leave a Rating from 1-5</label>
+                                                            <input type="number" name="rating" class="w-[10%] mx-3 rounded-lg">
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="review">Review</label>
+                                                            <input type="text" name="comment" class="w-full rounded-lg">
+                                                        </div>
+
+                                                        <button type="submit" class="bg-orange-500 justify-self-center w-1/3 rounded-lg p-3 text-white my-4 hover:bg-orange-600">Submit</button>
+                                                    </form>
+                                                {% endif %}
+                                            </div>
+                                            <hr class="text-gray-700 w-full">
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                <!-- Small Screen -->
+                                <hr class="text-gray-700 w-full">
+                                <div class="grid md:hidden">
+                                    {% if data.orderitems %}
+                                        {% for orderitem in data.orderitems %}
+                                            <div class="grid py-4 text-center justify-items-center">
+                                                <h3 class="font-fjord justify-self-start">{{ orderitem.order.tracking_number }}</h3>
+                                                <h3 class="font-fjord justify-self-start my-5">{{ orderitem.order.created_at }}</h3>
+                                                <div class="grid grid-cols-2 gap-3 w-full mb-9">
+                                                    <img class="w-36 h-36" src="{{ orderitem.fooditem.image.url }}" alt="">
+                                                    <h3 class="self-center font-fjord">{{ orderitem.fooditem.name }}</h3>
+                                                </div>
+                                                <div class="grid grid-cols-2 mb-9 justify-items-center w-full">
+                                                    <h3 class="font-fjord font-semibold self-center">Quantity </h3>
+                                                    <h3 class="self-center font-fjord">{{ orderitem.quantity }}</h3>
+                                                </div>
+                                                <div class="grid grid-cols-2 mb-9 justify-items-center w-full">
+                                                    <h3 class="font-fjord font-semibold self-center ">Price </h3>
+                                                    <h3 class="self-center font-fjord">&#8358; {{ orderitem.fooditem.price |intcomma }}</h3>
+                                                </div>
+                                                {% if orderitem.review_exists %}
+                                                    <p class="self-center font-fjord font-normal">You've already left a review</p>
+                                                {% else %}
+                                                    <form class="self-center font-fjord grid w-full mb-" method="post" action="{% url 'addreview' orderitem.fooditem.id %}">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="form_type" value="post_review">
+                                                        <input type="hidden" name="fooditem_id" value="{{ orderitem.fooditem.id }}">
+                                                        <div class="mb-4">
+                                                            <label for="rating">Leave a Rating from 1-5</label>
+                                                            <input type="number" name="rating" class="w-[15%] mx-3 rounded-lg">
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="review">Review</label>
+                                                            <input type="text" name="comment" class="w-full rounded-lg">
+                                                        </div>
+
+                                                        <button type="submit" class="bg-orange-500 justify-self-center w-1/3 rounded-lg p-3 text-white my-4 hover:bg-orange-600">Submit</button>
+                                                    </form>
+                                                {% endif %}
+                                            </div>
+                                            <hr class="text-gray-700 w-full">
+                                        {% endfor %}
+                                    {% endif %}                                
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    
                 </div>
             </div>
-      
-           
-      
-            <!-- My Orders Section -->
-            <div id="orders" class="tab-content hidden font-fjord">
-                <h2 class="text-2xl font-semibold mb-6">My Orders</h2>
-                <!-- Add content here make a section for leaving ratings and review -->
-            </div>
-      
-           
-            </div>
         </div>
-    </div>
-      
+        
 
 
+
+    <script>
+        function toggleOrderDetails(orderId) {
+            const orderDetails = document.getElementById(orderId);
+            orderDetails.classList.toggle('hidden');
+        }
+    </script>
+    
 </div>
 
 {% endblock content %}

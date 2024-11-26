@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% tailwind_css %}
-    <title>DishDash</title>
+    <title>DishDash Signup</title>
     <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,17 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Bona+Nova&family=Dancing+Script:wght@400..700&family=Fjord+One&display=swap" rel="stylesheet">	
     
 </head>
-<body class="min-h-min overflow-hidden flex">
+<body class="min-h-min overflow-hidden md:overflow-auto flex">
     <div class="relative w-full min-h-screen">
         <img class="w-full h-full blur-[1px] lg:blur-[3px]" src="{% static 'img/bgm.jpg' %}" alt="">
+        <div class="absolute bg-black inset-0 opacity-55"></div>
     </div>
-    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-[calc(186%+1.3px)] h-[155px] transform rotate-y-180">
-            <path class="fill-orange-500" d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"></path>
-        </svg>
-    </div>
+    
         
-    <div class="absolute top-10 z-20 right-10 justify-end text-white font-fjord flex mb-8 space-x-4">
+    <div class="absolute top-5 z-20 md:top-10 md:z-20 right-10 justify-end text-white font-fjord flex mb-8 space-x-4">
         <div>
             <a class="p-3 bg-black text-orange-500 rounded-full shadow-2xl active:bg-orange-500 active:text-white transition-colors duration-300" href="{% url 'login' %}">Login</a>
         </div>
@@ -34,25 +31,35 @@
     </div>
     
     <div class="absolute inset-0 justify-center items-center grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
-        <div class="grid gap-2 justify-items-center justify-self-center w-[300px] md:w-[400px] lg:w-[500px] bg-black shadow-2xl shadow-black rounded-lg p-16 backdrop:blur-2xl">
+        {% if messages %}
+            {{ message }}
+        
+        {% endif %}
+        <div class="grid gap-2 justify-items-center justify-self-center w-[340px] md:w-[400px] lg:w-[500px] bg-black shadow-2xl shadow-black rounded-lg p-16 backdrop:blur-2xl">
             <div class="w-20 h-20">
                 <img src="{% static 'img/Dish_Dash-removebg-preview.png' %}" alt="">
             </div>
             <h3 class="font-nova text-white">Welcome</h3>
-            <form>
+            <form method="post">
+                {% csrf_token %}
                 <div class="flex items-center mb-4">
-                    <label for="first-name" class="w-1/3 text-white font-fjord font-medium">First Name</label>
-                    <input type="text" id="first-name" name="first-name" required class="w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <label for="firstname" class="w-1/3 text-white font-fjord font-medium">First Name</label>
+                    <input type="text" id="firstname" name="firstname" required class="w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
                 </div>
             
                 <div class="flex items-center mb-4">
-                    <label for="surname" class="w-1/3 text-white font-fjord font-medium">Surname</label>
-                    <input type="text" id="surname" name="surname" required class="w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <label for="lastname" class="w-1/3 text-white font-fjord font-medium">Surname</label>
+                    <input type="text" id="lastname" name="lastname" required class="w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
                 </div>
             
                 <div class="flex items-center mb-4">
                     <label for="email" class="w-1/3 text-white font-fjord font-medium">Email</label>
                     <input type="email" id="email" name="email" required class="w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                </div>
+
+                <div class="flex items-center mb-4">
+                    <label for="phone_number" class="w-1/3 text-white font-fjord font-medium">Phone Number</label>
+                    <input type="tel" id="phone_number" name="phone_number" required class="w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
                 </div>
             
                 <div class="flex items-center mb-4">
@@ -61,15 +68,10 @@
                 </div>
             
                 <div class="flex items-center mb-4">
-                    <label for="confirm-password" class="w-1/3 text-white font-fjord font-medium">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required class="w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <label for="password_confirm" class="w-1/3 text-white font-fjord font-medium">Confirm Password</label>
+                    <input type="password" id="password_confirm" name="password_confirm" required class="w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
                 </div>
             
-                <div class="flex items-center mb-4">
-                    <label for="phone" class="w-1/3 text-white font-fjord font-medium">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required class="w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
-                </div>
-
                 <button type="submit" class="w-full bg-orange-500 font-fjord text-white py-2 rounded-lg font-medium hover:bg-orange-600 transition duration-200">
                     Sign Up
                 </button>
@@ -79,10 +81,12 @@
             <a class="text-white font-fjord py-4 hover:text-orange-500" href="{% url 'index' %}">Home</a>
 
         </div>
-        <div class="lg:grid gap-4 bg-black/5 justify-center md:justify-start hidden">
-            <h3 class="font-dancing text-orange-500 font-bold text-[70px] lg:text-[100px]">DishDash</h3>
+        <div class="lg:grid gap-4 bg-black/5 justify-start md:justify-center hidden">
+            <h3 class="font-dancing text-orange-500 font-bold text-[70px] lg:text-[100px]"style="text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 2px 2px 4px rgba(0,0,0,0.3)";>DishDash</h3>
         </div>
     </div>
+
+
 
 </body>
 </html>

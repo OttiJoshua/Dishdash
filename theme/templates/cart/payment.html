@@ -1,0 +1,97 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load humanize %}
+{% block title%} | Payment{% endblock %}
+{% block content %}
+
+
+<div class="bg-white overflow-hidden min-h-min">
+    <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4">
+        <div class="pt-24 px-3">
+            <h3 class="font-nova text-2xl mb-14">Payment Info</h3>
+            <h3 class="font-fjord font-semibold justify-self-center mb-8">Payment Method</h3>
+            <form method="POST" action="{% url 'payment' %}" class="grid grid-rows-2 justify-items-center gap-3 mb-5">
+                {% csrf_token %}
+                <input type="hidden" name="payment_mode" id="payment_mode" value="">
+                <button type="submit" class="font-fjord bg-orange-500 text-white rounded-2xl p-3 text-center w-1/2 md:w-1/4 hover:bg-orange-600" name="payment_mode" value="POD" >
+                    Pay On Delivery <i class="fas fa-hand-holding-usd fa-lg"></i>
+                </button>
+                <button onclick="makePaystackPayment()" type="button" class="font-fjord bg-orange-500 text-white rounded-2xl p-3 text-center w-1/2 md:w-1/4 hover:bg-orange-600" name="payment_mode" value="Paystack">
+                    PayStack <i class="far fa-credit-card fa-lg"></i>
+                </button>
+            </form>
+        </div>
+
+        <div class="pt-24 px-3">
+            <div class="grid justify-items-start w-full mb-8">
+                <h3 class="font-nova text-xl justify-center">Order Summary</h3>
+            </div>
+            
+            <div class="grid grid-cols-[3fr_1fr_1fr] mt-4 text-center justify-items-center">
+                <h3>Orders</h3>
+                <h3>Quantity</h3>
+                <h3>Price</h3>
+            </div>
+            <hr class="border-gray-500 font-bold w-full">
+
+            <div>
+                {% if current_order.orderitem_set.all %}
+                    {% for  orderitem in current_order.orderitem_set.all %}
+                        <div class="grid grid-cols-[3fr_1fr_1fr] py-4 text-center justify-items-center">
+                            <div class="grid grid-cols-2 gap-3 w-full">
+                                <img class="w-20 h-12" src="{{ orderitem.fooditem.image.url }}" alt="">
+                                <h3 class="self-center font-fjord">{{ orderitem.fooditem.name }}</h3>
+                            </div>
+                            <h3 class="self-center font-fjord">{{ orderitem.quantity }}</h3>
+                            {% if orderitem.fooditem.off_price %}
+                                <h3 class="font-fjord font-semibold text-orange-500">&#8358; {{ orderitem.fooditem.off_price|intcomma }}</h3>
+                            {% else %}
+                                <h3 class="self-center font-fjord">&#8358; {{ orderitem.fooditem.price |intcomma }}</h3>
+                            {% endif %}
+                        </div>
+                        <hr class="text-gray-700 w-full">
+                    {% endfor %}
+                {% endif %}
+                
+            </div>
+
+            <div class="grid grid-cols-2 pt-4 pb-12 ">
+                <h3 class="self-center justify-self-start font-fjord font-semibold">Grand Total</h3>
+                <h3 class="self-center font-fjord justify-self-end font-semibold">&#8358; {{ total_price | intcomma }}</h3>
+            </div>
+           
+        </div>
+    </div>
+
+
+    <script src="https://js.paystack.co/v2/inline.js"></script>
+
+
+    <script>
+        function makePaystackPayment() {
+            const paystack = new PaystackPop();
+
+            paystack.newTransaction({
+                key: "pk_live_2aecee82a9657028d5e010f283e938b5d7d3638a",
+                email: "{{current_order.order_email}}",
+                amount: "{{current_order.order_total}} * 1000",
+
+                onSuccess:(transaction) => {
+                    console.log(transaction);
+                    window.location.href = "/index/{{current_order.payment_id}}";
+                },
+
+                onCancel:() => {
+                    Swal.fire({
+                        title: "Payment Cancelled",
+                        icon: "error",
+                    });
+                },
+            })
+        }
+    </script>
+
+
+</div>
+
+{% endblock content %}

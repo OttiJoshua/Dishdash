@@ -1,5 +1,7 @@
 {% extends 'base.html' %} 
 {% load static %}
+{% load humanize %}
+{% block title%} | Category {% endblock %}
 {% block content %}
 
 <div class="bg-white min-h-min overflow-hidden">
@@ -10,20 +12,24 @@
     </div> 
     
     <!-- Main Header -->
-    <div class="grid grid-cols-2 mb-7 p-6">
-        <div class="grid items-center">
-           <div class="px-3 md:px-8">
-                <h3 class="font-fjord self-end my-3 text-[14px] font-semibold text-orange-500">Welcome Welcome !!!</h3>
-                <h3 class="font-nova sm:text-lg md:text-3xl self-center my-3 font-bold">Local Cusine</h3>
-                <p class=" hidden md:flex font-fjord self-start my-3">Welcome to our Local Cuisine category! Experience authentic flavors from your community, featuring traditional dishes and beloved street food. Whether you're revisiting a classic or trying something new, our local cuisine selection brings the taste of home right to your table. Enjoy the best your region offers today!</p>
-                <p class="flex md:hidden font-fjord self-start">Welcome to our Local Cuisine category! Discover authentic dishes and beloved street food that bring the taste of home.</p>
-           </div>
+    {% if category %}
+        <div class="grid grid-cols-2 mb-7 p-6">
+            <div class="grid items-center">
+            <div class="px-3 md:px-8">
+                    <h3 class="font-fjord self-end my-3 text-[14px] font-semibold text-orange-500">Welcome Welcome !!!</h3> 
+                    <h3 class="font-nova sm:text-lg md:text-3xl self-center my-3 font-bold">{{ category.name }} </h3>
+                    <p class=" hidden md:flex font-fjord self-start my-3">{{ category.description }}</p>
+                    <p class="flex md:hidden font-fjord self-start">{{ category.sub_description }}</p>
+            </div>
+            </div>
+            <div class="grid justify-items-center">
+                <img class="rounded-full shadow-2xl w-[100px] h-[100px] md:w-[300px] md:h-[300px] lg:w-[500px] lg:h-[500px]" src="{{ category.image2.url }}" alt="">
+                <img class="flex md:hidden rounded-full shadow-2xl w-[100px] h-[100px] md:w-[300px] md:h-[300px] lg:w-[500px] lg:h-[500px]" src="{{ category.image3.url }}" alt="">
+            </div>
         </div>
-        <div class="grid justify-items-center">
-            <img class="rounded-full shadow-2xl w-[100px] h-[100px] md:w-[300px] md:h-[300px] lg:w-[500px] lg:h-[500px]" src="{% static 'img/chow.jpeg' %}" alt="">
-            <img class="flex md:hidden rounded-full shadow-2xl w-[100px] h-[100px] md:w-[300px] md:h-[300px] lg:w-[500px] lg:h-[500px]" src="{% static 'img/chowu.jpg' %}" alt="">
-        </div>
-    </div>
+   
+    {% endif %}
+        
 
 
         <!-- Our Dishes -->
@@ -32,71 +38,28 @@
     </div>
 
             <!-- Dishes Card -->
-    <div class="bg-gray-300 grid gap-y-16 gap-x-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-7">
-        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
-            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
-            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
-            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
-            <div class="text-center mb-5">
-                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="{% url 'fooditem' %}">View Item</a>
-            </div>
-        </div>
-        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
-            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
-            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
-            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
-            <div class="text-center mb-5">
-                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="{% url 'fooditem' %}">View Item</a>
-            </div>
-        </div>
-        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
-            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
-            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
-            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
-            <div class="text-center mb-5">
-                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="{% url 'fooditem' %}">View Item</a>
-            </div>
-        </div>
-        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
-            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
-            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
-            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
-            <div class="text-center mb-5">
-                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="{% url 'fooditem' %}">View Item</a>
-            </div>
-        </div>
-        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
-            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
-            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
-            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
-            <div class="text-center mb-5">
-                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="{% url 'fooditem' %}">View Item</a>
-            </div>
-        </div>
-        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
-            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
-            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
-            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
-            <div class="text-center mb-5">
-                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="{% url 'fooditem' %}">View Item</a>
-            </div>
-        </div>
-        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
-            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
-            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
-            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
-            <div class="text-center mb-5">
-                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="{% url 'fooditem' %}">View Item</a>
-            </div>
-        </div>
-        <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-2 rounded-lg shadow-2xl">
-            <img class="w-full" src="{% static 'img/ricebg.png' %}" alt="">
-            <h3 class="font-nova text-2xl font-semibold"> Jellof Rice</h3>
-            <h3 class="font-fjord font-semibold text-orange-500">&#8358; 3500</h3>
-            <div class="text-center mb-5">
-                <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="{% url 'fooditem' %}">View Item</a>
-            </div>
-        </div>
+    <div class="bg-gray-300 grid gap-y-16 gap-x-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-7">
+        {% if fooditems %}
+            {% for fooditem in fooditems %}
+                <div class="bg-white grid justify-self-center text-center gap-3 w-[250px] p-1 rounded-lg shadow-2xl">
+                    <img class="w-full h-[160px] rounded-lg" src="{{ fooditem.image.url }}" alt="">
+                    <h3 class="font-nova text-2xl font-semibold">{{ fooditem.name }}</h3>
+                    {% if fooditem.off_price %}
+                        <h3 class="font-fjord line-through text-gray-500">&#8358;{{ fooditem.price|intcomma }}</h3>
+                    {% else %}
+                        <h3 class="font-fjord font-semibold text-orange-500">&#8358;{{ fooditem.price|intcomma }}</h3>
+                    {% endif %}
+                    {% if fooditem.off_price %}
+                        <h3 class="font-fjord font-semibold text-orange-500">&#8358; {{ fooditem.off_price|intcomma }}</h3>                        
+                    {% endif %}
+                    <div class="text-center mb-5">
+                        <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="{% url 'fooditem' fooditem.id %}">View Item</a>
+                    </div>
+                </div>
+            {% endfor %}
+            
+        {% endif %}
+       
     </div>
 
 

@@ -1,0 +1,64 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load humanize %}
+{% block title%} | Search{% endblock %}
+{% block content %}
+
+<div class="overflow-hidden bg-white min-h-min">
+    <div class="grid sm:grid-cols-1 md:grid-cols-[2fr_3fr] justify-center my-7 w-full gap-6 md:gap-0">
+        <div class="flex justify-start gap-5 list-none ml-0 pl-7 md:pl-0  md:ml-7 w-full font-nova">
+            <li class="self-center hover:font-bold"><a href="{% url 'index' %}">Home</a></li>
+            <li class="self-center hover:font-bold"><a href="{% url 'categories' %}">Categories</a></li>
+        </div>
+        <form class="grid font-fjord grid-cols-[18fr_1fr] border rounded-full w-[90%] mx-7" action="{% url 'search' %}" method="get">
+            <input class="rounded-full border-none w-full bg-none" type="search" name="searchmenu" placeholder="What would you like?" id="">
+            <button type="submit" class="self-center bg-none " href="{% url 'search' %}">
+                <i class="fas fa-search fa-lg" style="color: #ffa500;"></i>
+            </button>        
+        </form>
+    </div>
+
+        <!-- Search Results -->
+    <div class="flex justify-center text-center pt-14">
+    {% if fooditems %}
+        <h3 class="font-nova font-semibold text-[30px] md:text-[40px]"><span class="text-orange-500">{{ name|capfirst }} </span>Search Result</h3>    
+    {% endif %}
+    </div>
+
+    <div class="flex justify-center text-center py-4">
+        {% if fooditems %}
+            <h3 class="font-fjord font-medium text-[15px] md:text-[20px]">We Have Found {{ fooditems|length }} Items That Match Your Search</h3>
+        {% else %}
+            <h3 class="font-fjord font-medium text-[15px] md:text-[20px]">We Could Not Find Items That Match Your Search</h3>    
+        {% endif %}
+    </div>
+    
+
+
+    <div class="bg-gray-300 grid gap-y-16 gap-x-2 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 py-10 px-7">
+        {% if fooditems %}
+            {% for fooditem in fooditems %}
+                <div class="bg-white grid justify-self-center text-center gap-3 w-[300px] p-1 rounded-lg shadow-2xl">
+                    <img class="w-full h-[160px] rounded-lg" src="{{ fooditem.image.url }}" alt="">
+                    <h3 class="font-nova text-2xl font-semibold">{{ fooditem.name }}</h3>
+                    {% if fooditem.off_price %}
+                        <h3 class="font-fjord line-through text-gray-500">&#8358;{{ fooditem.price|intcomma }}</h3>
+                    {% else %}
+                        <h3 class="font-fjord font-semibold text-orange-500">&#8358;{{ fooditem.price|intcomma }}</h3>
+                    {% endif %}
+                    {% if fooditem.off_price %}
+                        <h3 class="font-fjord font-semibold text-orange-500">&#8358; {{ fooditem.off_price|intcomma }}</h3>                        
+                    {% endif %}
+                    <div class="text-center mb-5">
+                        <a class="p-2 bg-orange-500 rounded-2xl w-32 text-white font-fjord shadow-2xl hover:font-bold" href="{% url 'fooditem' fooditem.id %}">View Item</a>
+                    </div>
+                </div>
+            {% endfor %}
+            
+        {% endif %}
+       
+    </div>
+    
+</div>
+
+{% endblock content %}

@@ -1,9 +1,11 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 {% load static %}
+{% load humanize %}
+
 <html lang="en">
 	<head>
-    	<title>DishDash</title>
+    	<title>DishDash {% block title%}{% endblock %}</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -13,7 +15,8 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Bona+Nova&family=Dancing+Script:wght@400..700&family=Fjord+One&display=swap" rel="stylesheet">	
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>	
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+			
 	</head>
 
 	<body class="bg-gray-700 sm:px-0 sm:pt-0 md:px-6 md:pt-4"> 
@@ -28,9 +31,23 @@
 				<li class="self-end hover:text-orange-600 border border-orange-400 rounded-full p-2"><a href="">Contact & FAQ</a></li>
 			</div>
 			<div class="flex justify-end gap-4 list-none font-nova mr-8">
-				<li class="self-end text-orange-400 hover:text-orange-600"><a href="{% url 'login' %}">Login</a></li>
-				<li class="self-end text-orange-400 hover:text-orange-600"><a href="{% url 'signup' %}">SignUp</a></li>
+				{% if user.is_authenticated %}
+					<li class="self-end text-orange-400 hover:text-orange-600"><a href="{% url 'user' %}">My Account</a></li>
+					<li class="self-end text-orange-400 hover:text-orange-600">
+						<form action="{% url 'logout' %}" method="post" id="logout">
+							{% csrf_token %}
+							<button type="submit">
+								<i class="fas fa-sign-out-alt fa-lg" style="color: #ffa500;"></i> Logout
+							</button>
+						</form>
+					</li>
+				{% else %}
+					<li class="self-end text-orange-400 hover:text-orange-600"><a href="{% url 'login' %}">Login</a></li>
+					<li class="self-end text-orange-400 hover:text-orange-600"><a href="{% url 'signup' %}">SignUp</a></li>
+				{% endif %}
+				
 				<li class="self-end"><a href="{% url 'cart' %}"><i class="fas fa-cart-plus fa-lg" style="color: #ffa500;"></i></a></li>
+			
 			</div>
 		</div>
 
@@ -80,22 +97,14 @@
 					<h3 class=" text-orange-500 font-nova text-3xl mb-5 font-semibold">Categories</h3>
 					<div class="list-none grid justify-items-center">
 						<div class="grid gap-1 grid-cols-2">
-							<i class="fas fa-crosshairs fa-lg self-center" style="color: #ffa500;"></i>
-							<a class=" hover:text-orange-500  justify-self-start" href="{% url 'category' %}">Local Cusine</a>
-							<i class="fas fa-crosshairs fa-lg self-center" style="color: #ffa500;"></i>
-							<a class=" hover:text-orange-500  justify-self-start" href="{% url 'category' %}">Beverages</a>
-							<i class="fas fa-crosshairs fa-lg self-center" style="color: #ffa500;"></i>
-							<a class=" hover:text-orange-500  justify-self-start" href="{% url 'category' %}">Smallchops</a>
-							<i class="fas fa-crosshairs fa-lg self-center" style="color: #ffa500;"></i>
-							<a class=" hover:text-orange-500  justify-self-start" href="{% url 'category' %}">Grills</a>
-							<i class="fas fa-crosshairs fa-lg self-center" style="color: #ffa500;"></i>
-							<a class=" hover:text-orange-500  justify-self-start" href="{% url 'category' %}">Bakery</a>
-							<i class="fas fa-crosshairs fa-lg self-center" style="color: #ffa500;"></i>
-							<a class=" hover:text-orange-500  justify-self-start" href="{% url 'category' %}">FastFood</a>
-							<i class="fas fa-crosshairs fa-lg self-center" style="color: #ffa500;"></i>
-							<a class=" hover:text-orange-500  justify-self-start" href="{% url 'category' %}">Artisan Food</a>
-							<i class="fas fa-crosshairs fa-lg self-center" style="color: #ffa500;"></i>
-							<a class=" hover:text-orange-500  justify-self-start" href="{% url 'category' %}">Global Dishes</a>
+							{% if categories %}
+								{% for category in categories %}
+									<i class="fas fa-crosshairs fa-lg self-center relative left-1/4 transform -translate-x-0.5" style="color: #ffa500;"></i>
+									<a class=" hover:text-orange-500  justify-self-start" href="{% url 'category' category.id %}">{{ category.name }}</a>
+									
+								{% endfor %}
+								
+							{% endif %}
 							
 						</div>
 					</div>

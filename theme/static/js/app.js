@@ -124,29 +124,7 @@ const indexSwiper = new Swiper('.index-swiper', {
       }
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-      const tabs = document.querySelectorAll('.tab-link');
-      const contents = document.querySelectorAll('.tab-content');
-  
-      tabs.forEach(tab => {
-          tab.addEventListener('click', function (e) {
-              e.preventDefault();
-  
-              // Remove 'active' class from all tabs and hide all content
-              tabs.forEach(t => t.classList.remove('bg-orange-500', 'text-white'));
-              contents.forEach(content => content.classList.add('hidden'));
-  
-              // Add 'active' class to clicked tab and show the corresponding content
-              tab.classList.add('bg-orange-500', 'text-white');
-              document.getElementById(tab.dataset.target).classList.remove('hidden');
-          });
-      });
-  
-      // Show the first tab by default
-      tabs[0].click();
-  });
-
-
+    
 
   document.getElementById("heartIcon").addEventListener("click", function() {
     this.classList.toggle("text-orange-600");
@@ -155,24 +133,6 @@ const indexSwiper = new Swiper('.index-swiper', {
 
 
 
-// Cart Counter
-const decreaseBtn = document.getElementById('decrease');
-const increaseBtn = document.getElementById('increase');
-const counter = document.getElementById('counter');
-
-let count = 1;
-
-decreaseBtn.addEventListener('click', () => {
-  if (count > 1) {
-    count--;
-    counter.textContent = count;
-  }
-});
-
-increaseBtn.addEventListener('click', () => {
-  count++;
-  counter.textContent = count;
-});
 
 
 
