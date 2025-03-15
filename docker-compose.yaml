@@ -7,11 +7,8 @@ services:
     container_name: dishdash-django
     ports:
       - "8000:8000"
-    environment:
-      DB_NAME: dishdash
-      DB_HOST: postgres
-      DB_USER: postgres
-      DB_PASSWORD: Captain555
+    env_file:
+      - ./dishdash/.env
     volumes:
        - ./media:/media
        - ./static:/static
@@ -24,10 +21,8 @@ services:
     command: -p 5432
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_DB: dishdash
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Captain555
+    env_file:
+      - ./dishdash/.env
     healthcheck:  
       test: ["CMD-SHELL", "pg_isready -U postgres -p 5432"]
       interval: 5s
